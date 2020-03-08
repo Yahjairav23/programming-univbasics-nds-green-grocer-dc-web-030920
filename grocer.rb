@@ -32,19 +32,19 @@ def apply_coupons(cart, coupons)
   coupons.each do |discount|
     item_in_cart = find_item_by_name_in_collection(discount[:item], cart)
     if (item_in_cart != nil)
-      if (item_in_cart[:count] >= coupon[:num])
-        item_in_cart[:count] -= coupon[:num]
+      if (item_in_cart[:count] >= discount[:num])
+        item_in_cart[:count] -= discount[:num]
         cart.push(
           {
-            item: "#{coupon[:item]} W/COUPON",
-            price: (coupon[:cost] / coupon[:num]),
+            item: "#{discount[:item]} W/COUPON",
+            price: (discount[:cost] / discount[:num]),
             clearance: item_in_cart[:clearance],
-            count: coupon[:num]
+            count: discount[:num]
           }
         )
-      elsif (item_in_cart[:count] == coupon[:num])
-          item_in_cart[:item] = "#{coupon[:item]} W/COUPON"
-          item_in_cart[:price] = (coupon[:cost] / coupon[:num])
+      elsif (item_in_cart[:discount] == discount[:num])
+          item_in_cart[:item] = "#{discount[:item]} W/COUPON"
+          item_in_cart[:price] = (discount[:cost] / discount[:num])
       end
     end
   end 
