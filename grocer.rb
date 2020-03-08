@@ -65,9 +65,9 @@ end
 def checkout(cart, coupons)
   consolidated_cart = consolidate_cart(cart)
   coupons_cart = apply_coupons(consolidated_cart, coupons)
-  clearance_cart = apply_clearance(consolidated_coupons_cart)
+  clearance_cart = apply_clearance(coupons_cart)
 
-  #now that we have a "perfect" cart we can run through the cart to sum up the items prices
+
   total = 0
   i = 0
   while i < clearance_cart.length do 
