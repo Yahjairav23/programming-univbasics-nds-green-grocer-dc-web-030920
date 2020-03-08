@@ -12,12 +12,20 @@ def find_item_by_name_in_collection(name, collection)
 end
 
 def consolidate_cart(cart)
-  consolidated_cart = consolidate_cart(cart)
-      i = 0
-      while i < consolidated_cart.length do
-        expect(consolidated_cart[i][:count]).to eq(1)
-        i += 1
-      end
+  consolidated_cart = []
+
+  cart.each do |n|
+    found_item = find_item_by_name_in_collection(n[:item], consolidated_cart)
+
+    if found_item != nil
+      found_item[:count] += 1
+    else
+      consolidated_cart.push(n)
+      consolidated_cart.last[:count] = 1
+    end
+  end
+
+  return consolidated_cart
 end
 
 def apply_coupons(cart, coupons)
