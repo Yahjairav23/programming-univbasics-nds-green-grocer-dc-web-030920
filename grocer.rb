@@ -32,6 +32,7 @@ def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
   #
   # REMEMBER: This method **should** update cart
+  item_in_cart = find_item_by_name_in_collection(coupon[:item], cart)
 end
 
 def apply_clearance(cart)
