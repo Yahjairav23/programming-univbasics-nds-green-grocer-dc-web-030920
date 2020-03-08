@@ -25,7 +25,7 @@ def consolidate_cart(cart)
     end
   end
 
-  return consolidated_cart
+  consolidated_cart
 end
 
 def apply_coupons(cart, coupons)
@@ -49,13 +49,17 @@ def apply_coupons(cart, coupons)
     end
   end 
 
-  return cart 
+  cart 
 end
 
 def apply_clearance(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This method **should** update cart
+  cart.each do |item|
+    if (item[:clearance] == true)
+      item[:price] = (item[:price] * 0.8).round(2)
+    end
+  end
+
+  cart
 end
 
 def checkout(cart, coupons)
