@@ -67,17 +67,13 @@ def checkout(cart, coupons)
   coupons_cart = apply_coupons(consolidated_cart, coupons)
   clearance_cart = apply_clearance(coupons_cart)
 
-
   total = 0
   i = 0
   while i < clearance_cart.length do 
-
     total += clearance_cart[i][:price] * clearance_cart[i][:count]
-
     i+=1 
   end
 
-  #10% discount 
   if total > 100 
     total = total - total * 0.1
     total.round(2)
